@@ -14,7 +14,7 @@ class Ball{
         Ball(sf::Vector2f position, int rad){
             ball.setRadius(rad);
             ball.setPointCount(360);
-            ball.setFillColor(sf::Color{143, 185, 167 });    ///242,130,141
+            ball.setFillColor(sf::Color{143, 185, 167 });  
             ball.setOutlineThickness(1);
             ball.setOutlineColor(sf::Color(253,251,212));
             ball.setPosition(position);
@@ -27,7 +27,6 @@ class Ball{
         }
 
         void setPosition(sf::Vector2f pos){
-            //ball.setPosition(pos);
             ball.setPosition(pos.x - radius/2, pos.y - radius/2);
         }
 
@@ -58,7 +57,7 @@ class Ball{
         }
 
         void light_color(){
-            ball.setFillColor(sf::Color{253, 251, 212});   //253, 251, 212    242,130, 141
+            ball.setFillColor(sf::Color{253, 251, 212}); 
         }
 
         void normal_color(){
@@ -86,4 +85,4 @@ class Ball{
 
 };
 
-#endif // BALL_H_INCLUDED
+#endif

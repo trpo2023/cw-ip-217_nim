@@ -14,8 +14,6 @@ class Button{
             text.setCharacterSize(charSize);
             button.setSize(size);
             button.setFillColor(bgColor);
-            //text.setOutlineThickness(2);
-            //text.setOutlineColor(sf::Color(118, 93, 105));
             button.setOutlineThickness(2);
             button.setOutlineColor(sf::Color(118, 93, 105));
         }
@@ -69,4 +67,4 @@ class Button{
 };
 
 
-#endif // BUTTON_H_INCLUDED
+#endif 

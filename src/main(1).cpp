@@ -9,14 +9,12 @@
 
 int main(){
 
-    //font
     sf::Font asper;
     if(!asper.loadFromFile("Font/Aspergit_Bold.otf")){
         return -1;
     }
 
 
-    //texture
     sf::Texture texture;
     if(!texture.loadFromFile("img/nim11.jpeg")){
         return -1;
@@ -82,7 +80,6 @@ int main(){
     bt11.setFont(asper);
 
 
-    //rows of balls
     SomeBalls *s  = new SomeBalls(8*30, 0, 2);
     SomeBalls *sb = new SomeBalls(6*30, 100, 4);
     SomeBalls *sb1 = new SomeBalls(4*30, 200, 6);
@@ -90,12 +87,10 @@ int main(){
     SomeBalls *sb3 = new SomeBalls(0, 400, 10);
 
 
-    //players
     player p1(1);
     player p2(0);
 
 
-    //texts
     sf::Text text1;
     text1.setString("Player 1 on move");
     text1.setFont(asper);
@@ -103,8 +98,6 @@ int main(){
     text1.setStyle(sf::Text::Bold);
     text1.setColor(sf::Color{253, 251, 212});
     text1.setPosition({622, 30});
-    //text1.setOutlineThickness(1);
-    //text1.setOutlineColor(sf::Color::Black);
 
     sf::Text textO1;
     textO1.setFont(asper);
@@ -112,8 +105,6 @@ int main(){
     textO1.setStyle(sf::Text::Bold);
     textO1.setColor(sf::Color{143, 185, 167});
     textO1.setPosition({200, 200});
-//    textO1.setOutlineThickness(1);
-//    textO1.setOutlineColor(sf::Color::Black);
 
     sf::Text text4;
     text4.setFont(asper);
@@ -121,24 +112,18 @@ int main(){
     text4.setStyle(sf::Text::Bold);
     text4.setColor(sf::Color{143, 185, 167});
     text4.setPosition({120, 485});
-//    text4.setOutlineThickness(1);
-//    text4.setOutlineColor(sf::Color(118, 93, 105));
 
     sf::Text text5("SCORE ", asper);
     text5.setCharacterSize(25);
     text5.setStyle(sf::Text::Bold);
     text5.setColor(sf::Color{253, 251, 212});
     text5.setPosition({650, 95});
-//    text5.setOutlineThickness(1);
-//    text5.setOutlineColor(sf::Color::Black);
 
     sf::Text text12("SKIP ", asper);
     text12.setCharacterSize(20);
     text12.setStyle(sf::Text::Bold);
     text12.setColor(sf::Color{253, 251, 212});
     text12.setPosition({650, 235});
-//    text12.setOutlineThickness(1);
-//    text12.setOutlineColor(sf::Color::Black);
 
     sf::Text text7;
     text7.setFont(asper);
@@ -146,8 +131,6 @@ int main(){
     text7.setStyle(sf::Text::Bold);
     text7.setColor(sf::Color{143, 185, 167});
     text7.setPosition({410, 83});
-//    text7.setOutlineThickness(1);
-//    text7.setOutlineColor(sf::Color(118, 93, 105));
 
     sf::Text text8;
     text8.setFont(asper);
@@ -155,67 +138,55 @@ int main(){
     text8.setStyle(sf::Text::Bold);
     text8.setColor(sf::Color{143, 185, 167});
     text8.setPosition({151, 350});
-//    text8.setOutlineThickness(1);
-//    text8.setOutlineColor(sf::Color(118, 93, 105));
 
     sf::Text text10("NIM GAME", asper);
     text10.setCharacterSize(80);
     text10.setStyle(sf::Text::Bold);
     text10.setColor(sf::Color{143, 185, 167});
     text10.setPosition({175, 10});
-    //text10.setOutlineThickness(1);
-    //text10.setOutlineColor(sf::Color(118, 93, 105));
 
-    sf::Text text11;         //brojevi score-a
+    sf::Text text11;        
     text11.setFont(asper);
     text11.setCharacterSize(35);
     text11.setStyle(sf::Text::Bold);
     text11.setColor(sf::Color{253, 251, 212});
     text11.setPosition({650, 125});
-//    text11.setOutlineThickness(1);
-//    text11.setOutlineColor(sf::Color::Black);
 
-    sf::Text text13;        //brojevi skip-a
+    sf::Text text13;    
     text13.setFont(asper);
     text13.setCharacterSize(25);
     text13.setStyle(sf::Text::Bold);
     text13.setColor(sf::Color{253, 251, 212});
     text13.setPosition({650, 260});
-//    text13.setOutlineThickness(1);
-//    text13.setOutlineColor(sf::Color::Black);
 
 
-    //indikatori
     int ind = 1;
-    int indKolona0 = 0;   //indikatori selektovanih kolona
+    int indKolona0 = 0;  
     int indKolona1 = 0;
     int indKolona2 = 0;
     int indKolona3 = 0;
     int indKolona4 = 0;
-    int gOver = 0;        //indikator zavrseka runde
-    int newG = 0;         //indikator pocetka nove igre
-    int indProzora = 0;   //indikator za smijenu 2 prozora (koliko ih i ima u igrici)
-    int game = 0;         //indikator za glavnu petlju
-    int misere = 0;       //indikator za misere varijantu igranja
-    int indS = 0;         //indikator za smijenog text-a
-    int indTurn = 0;      //indikator koji regulise smjenu poteza
+    int gOver = 0;       
+    int newG = 0;         
+    int indProzora = 0;  
+    int game = 0;        
+    int misere = 0;       
+    int indS = 0;         
+    int indTurn = 0;      
 
 
-    //game loop (that contains two "main loops" and in each one of them there is "event loop")
     while(game == 0){
-        if(indProzora == 0){    //slucaj za prozor u kom je menu
+        if(indProzora == 0){ 
 
             sf::RenderWindow window2;
-            window2.create(sf::VideoMode(800, 530), "Nim menu", sf::Style::Titlebar | sf::Style::Close);   //| sf::Style::Resize
+            window2.create(sf::VideoMode(800, 530), "Nim menu", sf::Style::Titlebar | sf::Style::Close);  
             window2.setFramerateLimit(60);
             window2.setKeyRepeatEnabled(false);
 
 
-            //Main loop1:
             while(window2.isOpen()){
 
                 sf::Event event;
-                //Event loop1:
                 while(window2.pollEvent(event)){
                     switch(event.type){
 
@@ -324,8 +295,7 @@ int main(){
                         misere = 1;
                         window2.close();
                     }if(bt9.isMouseOver(window2)){
-                        indProzora = 1;
-                        //misere = 1;
+                        indProzora = 1
                         window2.close();
                     }
                     break;
@@ -342,20 +312,18 @@ int main(){
             window2.draw(text10);
             window2.display();
         }
-        }else{   //slucaj za prozor u kome se igra
+        }else{ 
 
             text8.setString(" ");
             indS = 1;
 
             sf::RenderWindow window;
-            window.create(sf::VideoMode(800, 530), "NIM game", sf::Style::Titlebar | sf::Style::Close);   //sf::Style::Resize //sf::Style::Titlebar | sf::Style::Close
+            window.create(sf::VideoMode(800, 530), "NIM game", sf::Style::Titlebar | sf::Style::Close);
             window.setFramerateLimit(60);
             window.setKeyRepeatEnabled(false);
 
-            //Main loop2:
             while(window.isOpen()){
                 sf::Event event;
-                //Event loop2:
                 while(window.pollEvent(event)){
                     switch(event.type){
 
@@ -594,14 +562,12 @@ int main(){
                         if(ind==1){
                             if(p1.getSkip() > 0){
                                 p1.removeSkip();
-                                //indTurn = 1;
                                 ind = 0;
                                 text1.setString("Player 2 on move");
                             }
                         }else if(ind == 0){
                             if(p2.getSkip() > 0){
                                 p2.removeSkip();
-                                //indTurn = 1;
                                 ind = 1;
                                 text1.setString("Player 1 on move");
                             }

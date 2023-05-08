@@ -65,7 +65,6 @@ class SomeBalls{
         }
 
 
-        //std::list<Ball>::iterator it;
         void light_color1(){
             for(Ball b : lista){
                 b.light_color();
@@ -74,7 +73,6 @@ class SomeBalls{
 
 
         bool isMouseOver1(sf::RenderWindow &window){
-            //std::list<Ball>::iterator it;
             for(Ball b : lista){
                 if(b.isMouseOver(window)){
                     return true;
@@ -112,4 +110,4 @@ class SomeBalls{
 };
 
 
-#endif // SOMEBALLS_H_INCLUDED
+#endif 
