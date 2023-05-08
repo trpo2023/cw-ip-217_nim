@@ -10,13 +10,13 @@
 int main(){
 
     sf::Font asper;
-    if(!asper.loadFromFile("Font/Aspergit_Bold.otf")){
+    if(!asper.loadFromFile("font/Aspergit_Bold.otf")){
         return -1;
     }
 
 
     sf::Texture texture;
-    if(!texture.loadFromFile("img/nim11.jpeg")){
+    if(!texture.loadFromFile("img/nim11.jpg")){
         return -1;
     }
     texture.setSmooth(true);
@@ -25,7 +25,7 @@ int main(){
     sprite.setTexture(texture);
 
     sf::Texture texture1;
-    if(!texture1.loadFromFile("img/nimFirst.png")){
+    if(!texture1.loadFromFile("img/nimFirst.jpg")){
         return -1;
     }
     texture1.setSmooth(true);
@@ -67,7 +67,7 @@ int main(){
     bt7.setPosition({650, 400});
     bt7.setFont(asper);
 
-    Button bt8("Play Misère", {130, 30}, 20, sf::Color{253, 251, 212} , sf::Color::Black);
+    Button bt8("Play Reverse", {130, 30}, 20, sf::Color{253, 251, 212} , sf::Color::Black);
     bt8.setPosition({410, 200});
     bt8.setFont(asper);
 
@@ -255,7 +255,7 @@ int main(){
                     if(bt4.isMouseOver(window2)){
                        text8.setString("GAME INFO: \n"
                     "In Classic variant you have to pick the last dot to win. \n"
-                    "In Misère variant avoid picking the last dot to win. \n"
+                    "In Reverse variant avoid picking the last dot to win. \n"
                     "Dots can only be picked out of one row, \n"
                     "but in that row you can pick as many dots as you want \n"
                     "Whenever you finish your move click NEXT TURN \n"
