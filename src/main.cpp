@@ -295,7 +295,7 @@ int main(){
                         misere = 1;
                         window2.close();
                     }if(bt9.isMouseOver(window2)){
-                        indProzora = 1
+                        indProzora = 1;
                         window2.close();
                     }
                     break;
