@@ -12,11 +12,11 @@ class SomeBalls{
     public:
 
         SomeBalls(int x, int y, int num){
-            int duz = x;
+            float duz = x;
             int razmak = 30;
             for(int i=0; i<num; i++){
             lista.push_back(Ball({duz, y},30));
-                duz += 60;
+                duz += 60.0;
             }
         }
 
@@ -26,10 +26,10 @@ class SomeBalls{
 
 
         void makeBalls(int x, int y, int num){
-            int duz = x+60;
+            float duz = x+60.0;
             for(int i=0; i<num; i++){
             lista.push_back(Ball({duz, y},30));
-                duz += 60;
+                duz += 60.0;
             }
         }
 

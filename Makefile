@@ -9,7 +9,7 @@ LIB_DIR = src
 TEST_DIR = test
 LIB_TEST_DIR = libtest
 
-CC = gcc
+CC = g++
 CFLAGS = -Wall -Werror
 DEPSFLAGS = -MMD
 
