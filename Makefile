@@ -35,7 +35,7 @@ run:
 test: $(TEST_PATH)
 	$(BIN_DIR)/$(TEST_NAME)
 
-$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
+$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o
 	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME) -lm
 
 $(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
