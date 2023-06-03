@@ -1,7 +1,6 @@
-NAME_APP = app
-LIB_NAME = libapp.a
+NAME_APP = main
+LIB_NAME = libmain.a
 TEST_NAME = $(NAME_APP)-test
-INPUT_FILE = data
 
 CC = g++
 CFLAGS = -Wall -Werror
@@ -12,7 +11,7 @@ BIN_DIR = bin
 APP_DIR = src
 LIB_DIR = src
 TEST_DIR = test
-LIB_TEST_DIR = thirdparty
+LIB_TEST_DIR = libtest
 
 APP_PATH = $(BIN_DIR)/$(NAME_APP)
 LIB_PATH = $(OBJ_DIR)/$(LIB_DIR)/$(LIB_NAME)
@@ -28,23 +27,19 @@ APP_DEPS = $(patsubst $(APP_OBJ), $(OBJ_DIR)/%.d, $(APP_OBJ)) # Из .o заме
 LIB_DEPS = $(patsubst $(LIB_OBJ), $(OBJ_DIR)/%.d, $(LIB_OBJ))
 TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 
-all: $(APP_PATH)
+all: compile link
 
-$(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(CC) -I $(LIB_DIR) $^ -o $@ -lm
-
-$(LIB_PATH): $(LIB_OBJ)
-	ar rcs $@ $^
-
-$(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@ -lm
+compile:
+	g++ -Isfml_lib/include -Isrc -c src/main.cpp -o obj/main.o
+link:
+	g++ obj/main.o -o bin/main.exe -Lsfml_lib/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
 	rm $(APP_PATH) $(OBJ_DIR)/$(APP_DIR)/*.* $(OBJ_DIR)/$(LIB_DIR)/*.*
 	rm $(TEST_PATH) $(OBJ_DIR)/$(TEST_DIR)/*.*
 
 run: 
-	$(BIN_DIR)/$(NAME_APP) $(INPUT_FILE)
+	$(BIN_DIR)/$(NAME_APP)
 
 test: $(TEST_PATH)
 	$(BIN_DIR)/$(TEST_NAME)
