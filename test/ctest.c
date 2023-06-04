@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include <player.h>
+#include "src/player.h"
 
 CTEST(Functions, MoveDone)
 {
