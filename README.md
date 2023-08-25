@@ -1,1 +1,1 @@
-Nim
+The gallows
