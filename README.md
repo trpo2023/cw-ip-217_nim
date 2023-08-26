@@ -1,1 +1,1 @@
-The gallows
+Hangman
