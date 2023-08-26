@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <ctest.h>
+#include <src\main.cpp>
 
 using namespace std;
 
