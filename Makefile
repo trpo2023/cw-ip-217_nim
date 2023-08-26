@@ -30,9 +30,9 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: compile link
 
 compile:
-	g++ -Isfml_lib/include -Isrc -c src/main.cpp -o obj/main.o
+	g++ -Isrc -c src/app/main.cpp -o obj/main.o
 link:
-	g++ obj/main.o -o bin/main.exe -Lsfml_lib/lib -lsfml-graphics -lsfml-window -lsfml-system
+	g++ obj/main.o -o bin/main.exe 
 
 clean:
 	rm $(APP_PATH) $(OBJ_DIR)/$(APP_DIR)/*.* $(OBJ_DIR)/$(LIB_DIR)/*.*
