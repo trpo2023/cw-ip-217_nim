@@ -8,8 +8,8 @@ DEPSFLAGS = -MMD
 
 OBJ_DIR = obj
 BIN_DIR = bin
-APP_DIR = src
-LIB_DIR = src
+APP_DIR = src/app
+LIB_DIR = src/libapp
 TEST_DIR = test
 LIB_TEST_DIR = libtest
 
