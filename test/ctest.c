@@ -1,27 +1,16 @@
-#include <SFML/Graphics.hpp>
-#include <ctest.h>
-#include <stdio.h>
 #include <iostream>
+#include <cstring>
+#include <ctest.h>
 
-#include <src/player.h>
+using namespace std;
 
-CTEST(Functions, MoveDone)
+CTEST(Functions, SbrosVvoda)
 {
- int naPorezu = 1;
- moveDone();
- ASSERT_EQUAL(0,0);
-}
-
-CTEST(Functions, AddSkip)
-{
- int skip = 0;
- addSkip();
- ASSERT_EQUAL(1,1);
-}
-
-CTEST(Functions, RemoveSkip)
-{
- int skip = 10;
- removeSkip();
- ASSERT_EQUAL(9,9);
+ char simvol = ' ';
+ cin >> simvol;
+ SbrosVvoda();
+ if (strlen(simvol) == 1)
+	 ASSERT_EQUAL(1,1);
+ else 
+	 ASSERT_EQUAL(1,0);
 }
