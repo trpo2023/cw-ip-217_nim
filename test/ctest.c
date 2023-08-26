@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <ctest.h>
-#include "src\main.cpp"
+#include <sbros.h>
 
 using namespace std;
 
