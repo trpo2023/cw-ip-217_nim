@@ -30,7 +30,7 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: compile link
 
 compile:
-	g++ -Isrc/libapp -c src/app/main.cpp src/libapp/sbros.cpp -o obj/main.o
+	g++ -Isrc/libapp src/app/main.cpp src/libapp/sbros.cpp -o obj/main.o
 link:
 	g++ obj/main.o -o bin/main.exe 
 
