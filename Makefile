@@ -33,7 +33,7 @@ compile:
 	g++ -Isrc/libapp -c src/app/main.cpp -o obj/main.o -lgdi32 -lmingw32
 	g++ -Isrc/libapp -c src/libapp/sbros.cpp -o obj/sbros.o -lgdi32 -lmingw32
 
-libmain.a:sbros.o
+libmain.a:obj/sbros.o
 	ar rcs $@ $^
 
 link:
