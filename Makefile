@@ -17,10 +17,10 @@ APP_PATH = $(BIN_DIR)/$(NAME_APP)
 LIB_PATH = $(OBJ_DIR)/$(LIB_DIR)/$(LIB_NAME)
 TEST_PATH = $(BIN_DIR)/$(TEST_NAME)
 
-APP_SRC = $(wildcard $(APP_DIR)/*.cpp) # Все файлы с расширением .c нужно найти в текущей директории
+APP_SRC = $(wildcard $(APP_DIR)/*.cpp) # Все файлы с расширением .c/.cpp нужно найти в текущей директории
 LIB_SRC = $(wildcard $(LIB_DIR)/*.cpp)
 TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
-APP_OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(APP_SRC)) # Из .c заменяет в .o, SRC - какой список файлов
+APP_OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(APP_SRC)) # Из .c/.cpp заменяет в .o, SRC - какой список файлов
 LIB_OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(LIB_SRC))
 TEST_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(TEST_SRC))
 APP_DEPS = $(patsubst $(APP_OBJ), $(OBJ_DIR)/%.d, $(APP_OBJ)) # Из .o заменяет в .d
@@ -30,7 +30,7 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: $(APP_PATH)
 
 $(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(CC) -I $(LIB_DIR) $^ -o $@ -lgdi32 -lmingw32
+	$(CC) -I $(LIB_DIR) -c $^ -o $@ -lgdi32 -lmingw32
 
 $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
