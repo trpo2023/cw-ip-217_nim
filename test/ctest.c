@@ -7,10 +7,10 @@ using namespace std;
 
 CTEST(Functions, SbrosVvoda)
 {
- const char *simvol = ' ';
+ char simvol = ' ';
  cin >> simvol;
  SbrosVvoda();
- if (strlen(simvol) == 1)
+ if (cin.peek() == '\n')
 	 ASSERT_EQUAL(1,1);
  else 
 	 ASSERT_EQUAL(1,0);
