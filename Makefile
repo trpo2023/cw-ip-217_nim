@@ -27,16 +27,14 @@ APP_DEPS = $(patsubst $(APP_OBJ), $(OBJ_DIR)/%.d, $(APP_OBJ)) # Из .o заме
 LIB_DEPS = $(patsubst $(LIB_OBJ), $(OBJ_DIR)/%.d, $(LIB_OBJ))
 TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 
-all: $(APP_PATH)
+all: compile link
 
-$(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(CC) $(CFLAGS) -o $@ $^
+compile:
+	g++ -Isrc/libapp -c src/app/main.cpp -o obj/main.o -lgdi32 -lmingw32
+	g++ -Isrc/libapp -c src/libapp/sbros.cpp -o obj/sbros.o -lgdi32 -lmingw32
 
-$(LIB_PATH): $(LIB_OBJ)
-	ar rcs $@ $^
-
-$(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@ -lgdi32 -lmingw32
+link:
+	g++ obj/main.o obj/sbros.o -o bin/main.exe -lgdi32 -lmingw32
 
 clean:
 	rm $(APP_PATH) $(OBJ_DIR)/$(APP_DIR)/*.* $(OBJ_DIR)/$(LIB_DIR)/*.*
