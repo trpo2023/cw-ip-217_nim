@@ -30,10 +30,10 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: compile link
 
 compile:
-	g++ -Isrc/libapp -c src/app/main.cpp -o obj/main.o
-	g++ -Isrc/libapp src/libapp/sbros.cpp -o obj/sbros.o
+	g++ -Isrc/libapp -c src/app/main.cpp -o obj/main.o -lgdi32 -lmingw32
+	g++ -Isrc/libapp -c src/libapp/sbros.cpp -o obj/sbros.o -lgdi32 -lmingw32
 link:
-	g++ obj/main.o obj/sbros.o -o bin/main.exe 
+	g++ obj/main.o obj/sbros.o -o bin/main.exe -lgdi32 -lmingw32
 
 clean:
 	rm $(APP_PATH) $(OBJ_DIR)/$(APP_DIR)/*.* $(OBJ_DIR)/$(LIB_DIR)/*.*
