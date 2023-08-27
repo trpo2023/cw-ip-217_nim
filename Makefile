@@ -30,8 +30,7 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: $(APP_PATH)
 
 $(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(CC) -I $(LIB_DIR) -c src/app/main.cpp -o obj/main.o -lgdi32 -lmingw32
-	$(CC) -I $(LIB_DIR) -c src/libapp/sbros.cpp -o obj/sbros.o -lgdi32 -lmingw32
+	$(CC) $(CFLAGS) -o $@ $^
 
 $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
