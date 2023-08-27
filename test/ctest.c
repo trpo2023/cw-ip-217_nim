@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 #include <ctest.h>
 #include "sbros.hpp"
 
@@ -7,7 +7,7 @@ using namespace std;
 
 CTEST(Functions, SbrosVvoda)
 {
- char simvol = ' ';
+ const char simvol = ' ';
  cin >> simvol;
  SbrosVvoda();
  if (strlen(simvol) == 1)
