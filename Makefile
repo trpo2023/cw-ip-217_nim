@@ -32,6 +32,9 @@ all: compile link
 compile:
 	g++ -Isrc/libapp -c src/app/main.cpp -o obj/main.o -lgdi32 -lmingw32
 	g++ -Isrc/libapp -c src/libapp/sbros.cpp -o obj/sbros.o -lgdi32 -lmingw32
+
+	$(LIB_PATH): $(LIB_OBJ)
+		ar rcs $@ $^
 link:
 	g++ obj/main.o obj/sbros.o -o bin/main.exe -lgdi32 -lmingw32
 
@@ -46,7 +49,7 @@ test: $(TEST_PATH)
 	$(BIN_DIR)/$(TEST_NAME)
 
 $(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
-	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME) -lm
+	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME) -lgdi32 -lmingw32
 
 $(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_TEST_DIR) -c $< -o $@
