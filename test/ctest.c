@@ -7,7 +7,7 @@ using namespace std;
 
 CTEST(Functions, SbrosVvoda)
 {
- const char simvol = ' ';
+ const char *simvol = ' ';
  cin >> simvol;
  SbrosVvoda();
  if (strlen(simvol) == 1)
