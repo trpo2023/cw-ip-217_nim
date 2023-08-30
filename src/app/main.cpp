@@ -8,12 +8,12 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	srand(time(NULL));
-	
+
 	int x = rand() % 5;//Создаём переменную для выбора слова рандомным образом.
-	
+
 	string word[5] = { "burger", "pizza", "sushi", "dumplings", "salad" };//Записываем слова для игры.
 
-	
+
 	bool Pobeda = false;//Флаг выхода из бесконечного цикла.
 	string zagadSlovo = word[x];//Выбор слова для отгадывания.
 	string ugadBukvi = "";//Уже угаданные буквы.
@@ -22,12 +22,12 @@ int main()
 
 	//Вступительный текст программы-игры "Виселица".	
 	cout << "Привет, пользователь. Давай сыграем в игру \"Виселица\", правила которой просты.\nЯ, программа, загадываю слово из категории 'Еда', а ты его отгадываешь по буквам. Если ошибешься семь раз, то проиграешь.\nСлово будет состоять из букв Английского алфавита.\n\n";
-	
+
 
 	//Собственно, сам процесс игры.
 	while (kolOshibok > 0 && !Pobeda)
 	{
-		for (size_t i = 0; i < zagadSlovo.length(); i++) 
+		for (size_t i = 0; i < zagadSlovo.length(); i++)
 		{
 			if (ugadBukvi.find(zagadSlovo[i]) != string::npos)
 			{
@@ -72,11 +72,11 @@ int main()
 		}
 		//С уменьшением количества возможных ошибок рисуется картинка.
 		switch (kolOshibok) {
-		
+
 		case 6:
 			cout << "    _________" << endl;
 			cout << "    |       |" << endl;
-			cout << "    |       O" << endl;
+			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "    |" << endl;
@@ -87,7 +87,7 @@ int main()
 			cout << "    _________" << endl;
 			cout << "    |       |" << endl;
 			cout << "    |       O" << endl;
-			cout << "    |       |" << endl;
+			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "____|____" << endl;
@@ -97,7 +97,7 @@ int main()
 			cout << "    _________" << endl;
 			cout << "    |       |" << endl;
 			cout << "    |       O" << endl;
-			cout << "    |      /|" << endl;
+			cout << "    |       |" << endl;
 			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "____|____" << endl;
@@ -107,7 +107,7 @@ int main()
 			cout << "    _________" << endl;
 			cout << "    |       |" << endl;
 			cout << "    |       O" << endl;
-			cout << "    |      /|\\" << endl;
+			cout << "    |      /|" << endl;
 			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "____|____" << endl;
@@ -118,12 +118,22 @@ int main()
 			cout << "    |       |" << endl;
 			cout << "    |       O" << endl;
 			cout << "    |      /|\\" << endl;
-			cout << "    |      /" << endl;
+			cout << "    |" << endl;
 			cout << "    |" << endl;
 			cout << "____|____" << endl;
 			break;
 
 		case 1:
+			cout << "    _________" << endl;
+			cout << "    |       |" << endl;
+			cout << "    |       O" << endl;
+			cout << "    |      /|\\" << endl;
+			cout << "    |      /" << endl;
+			cout << "    |" << endl;
+			cout << "____|____" << endl;
+			break;
+
+		case 0:
 			cout << "    _________" << endl;
 			cout << "    |       |" << endl;
 			cout << "    |       O" << endl;
@@ -137,11 +147,11 @@ int main()
 
 	if (Pobeda)
 	{
-		cout << "Поздравляю! Вы выиграли!" << endl << zagadSlovo << endl;
+		cout << "Поздравляю! Вы выиграли! Отгаданное слово: " << endl << zagadSlovo << endl;
 	}
 	else
 	{
-		cout << "Вы проиграли. Загаданное слово: " << zagadSlovo << endl;
+		cout << "Увы, вы проиграли. Загаданное слово: " << zagadSlovo << endl;
 	}
 
 	//Выход из программы-игры "Виселица".
