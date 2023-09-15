@@ -13,10 +13,12 @@ CTEST(Functions, SbrosVvoda)
     char simvol = ' ';
     cin >> simvol;
     SbrosVvoda();
-    if (cin.peek() == '\n')
+    if (cin.peek() == '\n'){
         ASSERT_EQUAL(1, 1);
-    else
+        }
+    else{
         ASSERT_EQUAL(1, 0);
+        }
 }
 
 int main(int argc, const char** argv)
