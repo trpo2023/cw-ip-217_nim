@@ -1,3 +1,5 @@
+#define CTEST_MAIN
+#include <sstream>
 #include <iostream>
 #include <string>
 #include <ctest.h>
