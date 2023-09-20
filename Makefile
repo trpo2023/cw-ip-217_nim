@@ -49,11 +49,8 @@ run:
 test: $(TEST_PATH)
 	$(BIN_DIR)/$(TEST_NAME)
 
-$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
+$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
 	$(CC) -I $(LIB_PATH) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ -o $(BIN_DIR)/$(TEST_NAME) -lm -lgdi32 -lmingw32
-
-$(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_TEST_DIR) -c $< -o $@
 
 $(OBJ_DIR)/$(TEST_DIR)/ctest.o: $(TEST_DIR)/main1.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -I $(LIB_TEST_DIR) -c $< -o $@
