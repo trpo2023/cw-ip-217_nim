@@ -55,7 +55,7 @@ $(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o
 $(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_TEST_DIR) -c $< -o $@
 
-$(OBJ_DIR)/$(TEST_DIR)/ctest.o: $(TEST_DIR)/ctest.c
+$(OBJ_DIR)/$(TEST_DIR)/ctest.o: $(TEST_DIR)/main1.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -I $(LIB_TEST_DIR) -c $< -o $@
 
 format: 
