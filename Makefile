@@ -2,8 +2,8 @@ NAME_APP = main
 LIB_NAME = libmain.a
 TEST_NAME = test
 
-CC = gcc
-CFLAGS = -Wall -Wextra -g
+CC = g++
+CFLAGS = -Wall -Werror -MMD
 
 OBJ_DIR = obj
 BIN_DIR = bin
