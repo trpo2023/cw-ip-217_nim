@@ -1,4 +1,3 @@
-makefile
 NAME_APP = main
 LIB_NAME = libmain.a
 TEST_NAME = test
