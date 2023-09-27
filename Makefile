@@ -1,9 +1,10 @@
+makefile
 NAME_APP = main
 LIB_NAME = libmain.a
 TEST_NAME = test
 
-CC = g++
-CFLAGS = -Wall -Werror -MMD
+CC = gcc
+CFLAGS = -Wall -Wextra -g
 
 OBJ_DIR = obj
 BIN_DIR = bin
@@ -27,6 +28,9 @@ APP_PATH = $(BIN_DIR)/$(NAME_APP).exe
 LIB_PATH = $(BIN_DIR)/$(LIB_NAME)
 TEST_PATH = $(BIN_DIR)/$(TEST_NAME).exe
 
+TEST_LIB_NAME = libtest/ctest.h
+TEST_INCLUDE_DIR = -Ilibtest
+
 all: compile $(LIB_PATH) link
 
 compile: $(APP_OBJ) $(LIB_OBJ) $(TEST_OBJ)
@@ -49,7 +53,7 @@ $(TEST_PATH): $(TEST_OBJ) $(LIB_PATH)
     $(CC) -o $@ $^
 
 $(OBJ_DIR)/$(TEST_DIR)/ctest.o: $(TEST_DIR)/main1.c
-    $(CC) $(CFLAGS) -c -o $@ $<
+    $(CC) $(CFLAGS) $(TEST_INCLUDE_DIR) -c -o $@ $<
 
 format:
     clang-format -i $(APP_SRC) $(LIB_SRC) $(TEST_SRC)
