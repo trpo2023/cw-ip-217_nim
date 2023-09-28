@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "sbros.hpp"
+#include <time.h>
 
 using namespace std;
 
@@ -9,22 +10,22 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	srand(time(NULL));
 
-	int x = rand() % 5;//Создаём переменную для выбора слова рандомным образом.
+	int x = rand() % 5;//      .
 
-	string word[5] = { "burger", "pizza", "sushi", "dumplings", "salad" };//Записываем слова для игры.
-
-
-	bool Pobeda = false;//Флаг выхода из бесконечного цикла.
-	string zagadSlovo = word[x];//Выбор слова для отгадывания.
-	string ugadBukvi = "";//Уже угаданные буквы.
-	short kolOshibok = 7;//Счетчик допустимых ошибок.
-	char otvet;//Символ ответа.
-
-	//Вступительный текст программы-игры "Виселица".	
-	cout << "Привет, пользователь. Давай сыграем в игру \"Виселица\", правила которой просты.\nЯ, программа, загадываю слово из категории 'Еда', а ты его отгадываешь по буквам. Если ошибешься семь раз, то проиграешь.\nСлово будет состоять из букв Английского алфавита.\n\n";
+	string word[5] = { "burger", "pizza", "sushi", "dumplings", "salad" };//   .
 
 
-	//Собственно, сам процесс игры.
+	bool Pobeda = false;//    .
+	string zagadSlovo = word[x];//   .
+	string ugadBukvi = "";//  .
+	short kolOshibok = 7;//  .
+	char otvet;// .
+
+	//  - "".	
+	cout << ", .     \"\",   .\n, ,     '',      .    ,  .\n      .\n\n";
+
+
+	//,   .
 	while (kolOshibok > 0 && !Pobeda)
 	{
 		for (size_t i = 0; i < zagadSlovo.length(); i++)
@@ -40,19 +41,19 @@ int main()
 		}
 		cout << endl;
 
-		cout << "Введите букву: ";
+		cout << " : ";
 		cin >> otvet;
-		SbrosVvoda();//Сброс лишних введёных символов, если такие имеются.
+		SbrosVvoda();//   ,   .
 
-		if (ugadBukvi.find(otvet) != string::npos)//Проверка на повторение уже угаданных букв.
+		if (ugadBukvi.find(otvet) != string::npos)//     .
 		{
-			cout << "Вы уже угадали эту букву!" << endl;
+			cout << "    !" << endl;
 			continue;
 		}
 
-		if (zagadSlovo.find(otvet) != string::npos)//Проверка есть ли буква в слове.
+		if (zagadSlovo.find(otvet) != string::npos)//     .
 		{
-			cout << "Верно! Эта буква есть в слове." << endl;
+			cout << "!     ." << endl;
 			for (size_t i = 0; i < zagadSlovo.size(); i++)
 			{
 				if (zagadSlovo[i] == otvet)
@@ -60,17 +61,17 @@ int main()
 					ugadBukvi += otvet;
 				}
 			}
-			if (ugadBukvi.length() == zagadSlovo.length())//Проверка всё ли слово угадано.
+			if (ugadBukvi.length() == zagadSlovo.length())//    .
 			{
 				Pobeda = true;
 			}
 		}
-		else//Вывод, если буквы нет в слове.
+		else//,     .
 		{
-			cout << "Неправильно! Такой буквы в слове нет." << endl;
+			cout << "!     ." << endl;
 			kolOshibok--;
 		}
-		//С уменьшением количества возможных ошибок рисуется картинка.
+		//      .
 		switch (kolOshibok) {
 
 		case 6:
@@ -147,13 +148,13 @@ int main()
 
 	if (Pobeda)
 	{
-		cout << "Поздравляю! Вы выиграли! Отгаданное слово: " << endl << zagadSlovo << endl;
+		cout << "!  !  : " << endl << zagadSlovo << endl;
 	}
 	else
 	{
-		cout << "Увы, вы проиграли. Загаданное слово: " << zagadSlovo << endl;
+		cout << ",  .  : " << zagadSlovo << endl;
 	}
 
-	//Выход из программы-игры "Виселица".
+	//  - "".
 	return 0;
 }

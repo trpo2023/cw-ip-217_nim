@@ -1,8 +1,8 @@
 NAME_APP = main.exe
-LIB_NAME = libmain.a
-TEST_NAME = main-test
+LIB_NAME = libapp.a
+TEST_NAME = main1
 
-CC = gcc
+CC = g++
 CFLAGS = -Wall -Werror
 DEPSFLAGS = -MMD
 
@@ -11,18 +11,18 @@ BIN_DIR = bin
 APP_DIR = src\app
 LIB_DIR = src\libapp
 TEST_DIR = test
-LIB_TEST_DIR = thirdparty
+LIB_TEST_DIR = libtest
 
 APP_PATH = $(BIN_DIR)\$(NAME_APP)
 LIB_PATH = $(OBJ_DIR)\$(LIB_DIR)/$(LIB_NAME)
 TEST_PATH = $(BIN_DIR)\$(TEST_NAME)
 
-APP_SRC = $(wildcard $(APP_DIR)/*.c) # Все файлы с расширением .c нужно найти в текущей директории
-LIB_SRC = $(wildcard $(LIB_DIR)/*.c)
-TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
-APP_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(APP_SRC)) # Из .c заменяет в .o, SRC - какой список файлов
-LIB_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(LIB_SRC))
-TEST_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(TEST_SRC))
+APP_SRC = $(wildcard $(APP_DIR)/*.cpp) # Все файлы с расширением .cpppp нужно найти в текущей директории
+LIB_SRC = $(wildcard $(LIB_DIR)/*.cpp)
+TEST_SRC = $(wildcard $(TEST_DIR)/*.cpp)
+APP_OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(APP_SRC)) # Из .cpp заменяет в .o, SRC - какой список файлов
+LIB_OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(LIB_SRC))
+TEST_OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(TEST_SRC))
 APP_DEPS = $(patsubst $(APP_OBJ), $(OBJ_DIR)/%.d, $(APP_OBJ)) # Из .o заменяет в .d
 LIB_DEPS = $(patsubst $(LIB_OBJ), $(OBJ_DIR)/%.d, $(LIB_OBJ))
 TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
@@ -30,13 +30,13 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: $(APP_PATH)
 
 $(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(CC) -I $(LIB_DIR) $^ -o $@ -lgdi32 -lmingw32
+	$(CC) -I $(LIB_DIR) $^ -o $@
 
 $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
 
-$(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@ -lgdi32 -lmingw32
+$(OBJ_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -cpp $< -o $@
 
 clean:
 	del /Q /F $(APP_PATH)
@@ -50,8 +50,8 @@ run:
 test: $(TEST_PATH)
 	$(BIN_DIR)/$(TEST_NAME)
 
-$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
-	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME) -lgdi32 -lmingw32
+$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o
+	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME)
 
 $(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_TEST_DIR) -c $< -o $@
