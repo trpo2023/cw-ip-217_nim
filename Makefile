@@ -1,62 +1,64 @@
-NAME_APP = main
+NAME_APP = main.exe
 LIB_NAME = libmain.a
-TEST_NAME = test
+TEST_NAME = main-test
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Werror
+DEPSFLAGS = -MMD
 
 OBJ_DIR = obj
 BIN_DIR = bin
-APP_DIR = src
-LIB_DIR = libmain
+APP_DIR = src\app
+LIB_DIR = src\libapp
 TEST_DIR = test
+LIB_TEST_DIR = thirdparty
 
-APP_SRC = $(wildcard $(APP_DIR)/*.cpp)
-LIB_SRC = $(wildcard $(LIB_DIR)/*.cpp)
-TEST_SRC = $(wildcard $(TEST_DIR)/*.cpp)
+APP_PATH = $(BIN_DIR)\$(NAME_APP)
+LIB_PATH = $(OBJ_DIR)\$(LIB_DIR)/$(LIB_NAME)
+TEST_PATH = $(BIN_DIR)\$(TEST_NAME)
 
-APP_OBJ = $(patsubst $(APP_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(APP_SRC))
-LIB_OBJ = $(patsubst $(LIB_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(LIB_SRC))
-TEST_OBJ = $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_SRC))
+APP_SRC = $(wildcard $(APP_DIR)/*.c) # Все файлы с расширением .c нужно найти в текущей директории
+LIB_SRC = $(wildcard $(LIB_DIR)/*.c)
+TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
+APP_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(APP_SRC)) # Из .c заменяет в .o, SRC - какой список файлов
+LIB_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(LIB_SRC))
+TEST_OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(TEST_SRC))
+APP_DEPS = $(patsubst $(APP_OBJ), $(OBJ_DIR)/%.d, $(APP_OBJ)) # Из .o заменяет в .d
+LIB_DEPS = $(patsubst $(LIB_OBJ), $(OBJ_DIR)/%.d, $(LIB_OBJ))
+TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 
-APP_DEPS = $(patsubst %.o,%.d,$(APP_OBJ))
-LIB_DEPS = $(patsubst %.o,%.d,$(LIB_OBJ))
-TEST_DEPS = $(patsubst %.o,%.d,$(TEST_OBJ))
+all: $(APP_PATH)
 
-APP_PATH = $(BIN_DIR)/$(NAME_APP).exe
-LIB_PATH = $(BIN_DIR)/$(LIB_NAME)
-TEST_PATH = $(BIN_DIR)/$(TEST_NAME).exe
+$(APP_PATH): $(APP_OBJ) $(LIB_PATH)
+	$(CC) -I $(LIB_DIR) $^ -o $@ -lgdi32 -lmingw32
 
-TEST_LIB_NAME = libtest/ctest.h
-TEST_INCLUDE_DIR = -Ilibtest
+$(LIB_PATH): $(LIB_OBJ)
+	ar rcs $@ $^
 
-all: compile $(LIB_PATH) link
-
-compile: $(APP_OBJ) $(LIB_OBJ) $(TEST_OBJ)
-
-$(LIB_PATH): $(OBJ_DIR)/$(LIB_DIR)/sbros.o
-    ar rcs $@ $<
-
-link: $(OBJ_DIR)/$(APP_DIR)/main.o $(OBJ_DIR)/$(LIB_DIR)/sbros.o
-    $(CC) -o $(APP_PATH) $^ -lgdi32 -lmingw32
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@ -lgdi32 -lmingw32
 
 clean:
-    rm -rf $(OBJ_DIR)/* $(BIN_DIR)/*
+	del /Q /F $(APP_PATH)
+	del /Q /F $(OBJ_DIR)\$(APP_DIR)\*.d $(OBJ_DIR)\$(APP_DIR)\*.o
+	del /Q /F $(OBJ_DIR)\$(LIB_DIR)\*.d $(OBJ_DIR)\$(LIB_DIR)\*.o  $(OBJ_DIR)\$(LIB_DIR)\*.a
+	del /Q /F $(TEST_PATH) $(OBJ_DIR)\$(TEST_DIR)\*.d $(TEST_PATH) $(OBJ_DIR)\$(TEST_DIR)\*.o
 
-run:
-    $(APP_PATH)
+run: 
+	$(BIN_DIR)/$(NAME_APP)
 
 test: $(TEST_PATH)
+	$(BIN_DIR)/$(TEST_NAME)
 
-$(TEST_PATH): $(TEST_OBJ) $(LIB_PATH)
-    $(CC) -o $@ $^
+$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
+	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME) -lgdi32 -lmingw32
 
-$(OBJ_DIR)/$(TEST_DIR)/ctest.o: $(TEST_DIR)/main1.c
-    $(CC) $(CFLAGS) $(TEST_INCLUDE_DIR) -c -o $@ $<
+$(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_TEST_DIR) -c $< -o $@
 
-format:
-    clang-format -i $(APP_SRC) $(LIB_SRC) $(TEST_SRC)
+$(OBJ_DIR)/$(TEST_DIR)/ctest.o: $(TEST_DIR)/ctest.c
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -I $(LIB_TEST_DIR) -c $< -o $@
 
--include $(APP_DEPS) $(LIB_DEPS) $(TEST_DEPS)
+-include $(LIB_DEPS) $(APP_DEPS) $(TEST_DEPS)
 
-.PHONY: all compile link clean run test format
+.PHONY: all run clean test
