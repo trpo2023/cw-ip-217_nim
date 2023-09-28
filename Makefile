@@ -36,7 +36,7 @@ $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -cpp $< -o $@
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@
 
 clean:
 	del /Q /F $(APP_PATH)
