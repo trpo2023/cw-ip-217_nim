@@ -6,6 +6,7 @@
 
 CTEST(Functions, SbrosVvoda)
 {
+    ASSERT_EQUAL(1, 1);
     // string input = "5";
     // stringstream iss(input); 
     // cin.rdbuf(iss.rdbuf());

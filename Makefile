@@ -2,7 +2,8 @@ NAME_APP = main.exe
 LIB_NAME = libapp.a
 TEST_NAME = main1
 
-CC = g++
+CC = gcc
+PP = g++
 CFLAGS = -Wall -Werror
 DEPSFLAGS = -MMD
 
@@ -30,13 +31,13 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: $(APP_PATH)
 
 $(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(CC) -I $(LIB_DIR) $^ -o $@
+	$(PP) -I $(LIB_DIR) $^ -o $@
 
 $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@
+	$(PP) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@
 
 clean:
 	del /Q /F $(APP_PATH)
@@ -50,7 +51,7 @@ run:
 test: $(TEST_PATH)
 	$(BIN_DIR)/$(TEST_NAME)
 
-$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o
+$(TEST_PATH): $(OBJ_DIR)/$(TEST_DIR)/main.o $(OBJ_DIR)/$(TEST_DIR)/ctest.o 
 	$(CC) -I $(LIB_DIR) -I $(LIB_TEST_DIR) $^ $(LIB_PATH) -o $(BIN_DIR)/$(TEST_NAME)
 
 $(OBJ_DIR)/$(TEST_DIR)/main.o: $(TEST_DIR)/main.c
