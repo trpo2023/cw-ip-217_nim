@@ -9,7 +9,7 @@ CTEST(Functions, SbrosVvoda)
     char simvol;
     int result;
     
-    FILE* stream = fmemopen(input, strlen(input), "r");
+    FILE* stream = freopen(input, strlen(input), "r");
     if (stream == NULL) {
         return;
     }
