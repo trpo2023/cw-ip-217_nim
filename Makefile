@@ -9,14 +9,14 @@ DEPSFLAGS = -MMD
 
 OBJ_DIR = obj
 BIN_DIR = bin
-APP_DIR = src\app
-LIB_DIR = src\libapp
+APP_DIR = src/app
+LIB_DIR = src/libapp
 TEST_DIR = test
 LIB_TEST_DIR = libtest
 
-APP_PATH = $(BIN_DIR)\$(NAME_APP)
-LIB_PATH = $(OBJ_DIR)\$(LIB_DIR)/$(LIB_NAME)
-TEST_PATH = $(BIN_DIR)\$(TEST_NAME)
+APP_PATH = $(BIN_DIR)/$(NAME_APP)
+LIB_PATH = $(OBJ_DIR)/$(LIB_DIR)/$(LIB_NAME)
+TEST_PATH = $(BIN_DIR)/$(TEST_NAME)
 
 APP_SRC = $(wildcard $(APP_DIR)/*.c) # Все файлы с расширением .c нужно найти в текущей директории
 LIB_SRC = $(wildcard $(LIB_DIR)/*.c)
@@ -36,14 +36,14 @@ $(APP_PATH): $(APP_OBJ) $(LIB_PATH)
 $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
 
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@
 
 clean:
 	del /Q /F $(APP_PATH)
-	del /Q /F $(OBJ_DIR)\$(APP_DIR)\*.d $(OBJ_DIR)\$(APP_DIR)\*.o
-	del /Q /F $(OBJ_DIR)\$(LIB_DIR)\*.d $(OBJ_DIR)\$(LIB_DIR)\*.o  $(OBJ_DIR)\$(LIB_DIR)\*.a
-	del /Q /F $(TEST_PATH) $(OBJ_DIR)\$(TEST_DIR)\*.d $(TEST_PATH) $(OBJ_DIR)\$(TEST_DIR)\*.o
+	del /Q /F $(OBJ_DIR)/$(APP_DIR)/*.d $(OBJ_DIR)/$(APP_DIR)/*.o
+	del /Q /F $(OBJ_DIR)/$(LIB_DIR)/*.d $(OBJ_DIR)/$(LIB_DIR)/*.o  $(OBJ_DIR)/$(LIB_DIR)/*.a
+	del /Q /F $(TEST_PATH) $(OBJ_DIR)/$(TEST_DIR)/*.d $(TEST_PATH) $(OBJ_DIR)/$(TEST_DIR)/*.o
 
 run: 
 	$(BIN_DIR)/$(NAME_APP)
