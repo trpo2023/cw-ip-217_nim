@@ -1,4 +1,3 @@
-#include <iostream>
 #include <sbros.hpp>
 
 using namespace std;
