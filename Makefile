@@ -31,13 +31,13 @@ TEST_DEPS = $(patsubst $(TEST_OBJ), $(OBJ_DIR)/%.d, $(TEST_OBJ))
 all: $(APP_PATH)
 
 $(APP_PATH): $(APP_OBJ) $(LIB_PATH)
-	$(PP) -I $(LIB_DIR) $^ -o $@
+	$(CC) -I $(LIB_DIR) $^ -o $@
 
 $(LIB_PATH): $(LIB_OBJ)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.cpp
-	$(PP) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPSFLAGS) -I $(LIB_DIR) -c $< -o $@
 
 clean:
 	del /Q /F $(APP_PATH)
