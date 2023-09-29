@@ -5,7 +5,7 @@
 
 CTEST(Functions, SbrosVvoda)
 {
-    char input[] = "5";
+    char input[] = "5ji81bjfkw98";
     char simvol;
     int result;
     
@@ -22,7 +22,7 @@ CTEST(Functions, SbrosVvoda)
     
     SbrosVvoda();
     
-    if (result == 1 && simvol == '\n') {
+    if (result == 1 && simvol == '5') {
         ASSERT_EQUAL(1, 1);
     } else {
         ASSERT_EQUAL(1, 1);
