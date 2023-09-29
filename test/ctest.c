@@ -1,8 +1,7 @@
- #include <sstream>
- #include <iostream>
- #include <string>
+#include <iostream>
+#include <string>
 #include <ctest.h>
- #include "../src/libapp/sbros.hpp"
+#include "../src/libapp/sbros.hpp"
 
 CTEST(Functions, SbrosVvoda)
 {
