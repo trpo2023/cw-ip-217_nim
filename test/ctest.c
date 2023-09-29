@@ -9,13 +9,17 @@ CTEST(Functions, SbrosVvoda)
     char simvol;
     int result;
     
-    FILE *freopen(input, "r", FILE *stream);
-    if (stream == NULL) {
+    FILE* tmpFile = tmpfile();
+    if (tmpFile == NULL) {
+        // handle error
         return;
     }
     
-    result = fscanf(stream, "%c", &simvol);
-    fclose(stream);
+    fwrite(input, sizeof(char), strlen(input), tmpFile);
+    rewind(tmpFile);
+    
+    result = fscanf(tmpFile, "%c", &simvol);
+    fclose(tmpFile);
     
     SbrosVvoda();
     
