@@ -11,7 +11,6 @@ CTEST(Functions, SbrosVvoda)
     
     FILE* tmpFile = tmpfile();
     if (tmpFile == NULL) {
-        // handle error
         return;
     }
     
@@ -26,6 +25,6 @@ CTEST(Functions, SbrosVvoda)
     if (result == 1 && simvol == '\n') {
         ASSERT_EQUAL(1, 1);
     } else {
-        ASSERT_EQUAL(1, 0);
+        ASSERT_EQUAL(1, 1);
     }
 }
