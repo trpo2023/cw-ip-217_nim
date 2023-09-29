@@ -1,22 +1,27 @@
-#include <sstream>
-#include <iostream>
-#include <string>
+#include <stdio.h>
+#include <string.h>
 #include <ctest.h>
 #include "../src/libapp/sbros.h"
 
 CTEST(Functions, SbrosVvoda)
 {
-    ASSERT_EQUAL(1, 1);
-     string input = "5";
-     stringstream iss(input); 
-     cin.rdbuf(iss.rdbuf());
-     char simvol = ' ';
-     cin >> simvol;
-     SbrosVvoda();
-     if (cin.peek() == '\n'){
-         ASSERT_EQUAL(1, 1);
-         }
-     else{
-         ASSERT_EQUAL(1, 0);
-         }
+    char input[] = "5";
+    char simvol;
+    int result;
+    
+    FILE* stream = fmemopen(input, strlen(input), "r");
+    if (stream == NULL) {
+        return;
+    }
+    
+    result = fscanf(stream, "%c", &simvol);
+    fclose(stream);
+    
+    SbrosVvoda();
+    
+    if (result == 1 && simvol == '\n') {
+        ASSERT_EQUAL(1, 1);
+    } else {
+        ASSERT_EQUAL(1, 0);
+    }
 }
