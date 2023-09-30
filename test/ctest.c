@@ -22,7 +22,7 @@ CTEST(Functions, SbrosVvoda)
     
     SbrosVvoda();
     
-    if (result == 1 && simvol == '5') {
+    if (result == 1 && simvol == input[0]) {
         ASSERT_EQUAL(1, 1);
     } else {
         ASSERT_EQUAL(1, 1);
