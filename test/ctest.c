@@ -31,8 +31,8 @@ CTEST(Functions, SbrosVvoda)
 
 CTEST(Functions, checkDuplicateLetter)
 {
-    char* ugadBukvi[26] = "burger";
-    char otvet = "b";
+    char* ugadBukvi[6] = {'b'};
+    char otvet = 'b';
     if(checkDuplicateLetter(ugadBukvi, otvet) == 1){
         ASSERT_EQUAL(1, 1);
     } else {
@@ -42,9 +42,9 @@ CTEST(Functions, checkDuplicateLetter)
 
 CTEST(Functions, checkCorrectLetter)
 {
-    const char* zagadSlovo = "burger";
+    const char* zagadSlovo = 'burger';
     char* ugadBukvi;
-    char otvet = "a";
+    char otvet = 'a';
     int* kolOshibok = 1;
     if(checkCorrectLetter(zagadSlovo, ugadBukvi, otvet, &kolOshibok)==0){
         ASSERT_EQUAL(1, 1);
