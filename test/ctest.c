@@ -28,3 +28,27 @@ CTEST(Functions, SbrosVvoda)
         ASSERT_EQUAL(1, 1);
     }
 }
+
+CTEST(Functions, checkDuplicateLetter)
+{
+    char ugadBukvi[26] = "burger";
+    char otvet = "b";
+    if(checkDuplicateLetter(ugadBukvi, otvet) == 1){
+        ASSERT_EQUAL(1, 1);
+    } else {
+        ASSERT_EQUAL(1, 0);
+    }
+}
+
+CTEST(Functions, checkCorrectLetter)
+{
+    const char* zagadSlovo = "burger";
+    char* ugadBukvi;
+    char otvet = "a";
+    int* kolOshibok = 1;
+    if(checkCorrectLetter(zagadSlovo, ugadBukvi, otvet, &kolOshibok)==0){
+        ASSERT_EQUAL(1, 1);
+    } else {
+        ASSERT_EQUAL(1, 0);
+    }
+}
