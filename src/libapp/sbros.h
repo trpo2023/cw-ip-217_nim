@@ -7,4 +7,4 @@ void SbrosVvoda();
 
 int checkDuplicateLetter(char* ugadBukvi, char otvet);
 
-int checkCorrectLetter(char* zagadSlovo, char* ugadBukvi, char otvet, int* kolOshibok);
+int checkCorrectLetter(const char* zagadSlovo, char* ugadBukvi, char otvet, int* kolOshibok);

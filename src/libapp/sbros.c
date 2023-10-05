@@ -16,7 +16,7 @@ int checkDuplicateLetter(char* ugadBukvi, char otvet) {
     return 0; // Возвращаем 0, если буква не была ранее
 }
 
-int checkCorrectLetter(char* zagadSlovo, char* ugadBukvi, char otvet, int* kolOshibok) {
+int checkCorrectLetter(const char* zagadSlovo, char* ugadBukvi, char otvet, int* kolOshibok) {
     if (strchr(zagadSlovo, otvet) != NULL) {
         printf("Верно! Есть такая буква.\n");
         for (size_t i = 0; i < strlen(zagadSlovo); i++) {
