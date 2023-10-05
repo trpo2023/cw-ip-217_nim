@@ -46,7 +46,7 @@ CTEST(Functions, checkCorrectLetter)
     const char* zagadSlovo = word[0];
     char ugadBukvi[6] = "burger";
     char otvet = 'a';
-    int* kolOshibok = 1;
+    int kolOshibok = 1;
     if(checkCorrectLetter(zagadSlovo, ugadBukvi, otvet, &kolOshibok)==0){
         ASSERT_EQUAL(1, 1);
     } else {
