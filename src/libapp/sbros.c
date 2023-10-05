@@ -35,4 +35,5 @@ int checkCorrectLetter(const char* zagadSlovo, char* ugadBukvi, char otvet, int*
     if (kolOshibok == 0) {
         return 0; // Возвращаем 0 в остальных случаях
     }
+    return 0;
 }
