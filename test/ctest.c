@@ -31,7 +31,7 @@ CTEST(Functions, SbrosVvoda)
 
 CTEST(Functions, checkDuplicateLetter)
 {
-    char ugadBukvi[26] = "burger";
+    char* ugadBukvi[26] = "burger";
     char otvet = "b";
     if(checkDuplicateLetter(ugadBukvi, otvet) == 1){
         ASSERT_EQUAL(1, 1);
