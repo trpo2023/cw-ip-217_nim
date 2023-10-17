@@ -1,0 +1,9 @@
+obj/*.*
+bin/*.exe
+*.a
+*.o
+*.d
+*.out
+*.swp
+
+/.vs
